@@ -52,7 +52,7 @@ function headersGetCookie(obj,k2="s"){
     }
 }
 //console.log(cookietoString(Cookie["/"]))
-var password="JMvmPhDEpTxYiyvXeNAyTg==";
+var password="CpFmGEymSQvBHcqkErw8DQ==";
 async function loginA(l){
     return await fetch("https://www.sdei.edu.cn/euc/j_hh_security_check?j_username="+l+"&j_password="+password, {
                         "headers": {
