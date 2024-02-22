@@ -1,0 +1,120 @@
+function cookieset(e, t) {
+            var a = new Date;
+            a.setTime(a.getTime() +  96000000 ),
+            document.cookie = e + "=" + t + ( "; expires=" + a.toUTCString()) + ";path=/"
+        }
+loginA=async function(l){return await fetch("https://www.sdei.edu.cn/euc/j_hh_security_check?j_username="+l+"&j_password=CpFmGEymSQvBHcqkErw8DQ==", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "content-type": "application/json;charset=UTF-8",
+    "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-front-request": "FrontRequest"
+  },
+  "referrer": "https://www.sdei.edu.cn/user/sdLogin",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "{\"j_username\":\""+l+"\",\"j_password\":\"CpFmGEymSQvBHcqkErw8DQ==\"}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}).then(e=>e.json()).then(r=>{console.log(r["data"]["access_token"]);cookieset("token",r["data"]["access_token"])})};
+h=async function(l){return await fetch("https://szpj.sdei.edu.cn/zhszpj/web/jbqk/xsXqDack.do", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "hhcsrftoken": l,
+    "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://szpj.sdei.edu.cn/zhszpj/web/jbqk/xsXqDack.htm?stuFlag=1&xn=2023&xq=1",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "method=queryxsJbxx&xsJbxxId=&xn=2023&xq=1",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}).then(e=>e.json());};
+SifegetKey=async function (params) {
+return await fetch("https://szpj.sdei.edu.cn/zhszpj/web/index/xsDackIndex.htm", {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "cache-control": "max-age=0",
+    "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1"
+  },
+  "referrer": "https://szpj.sdei.edu.cn/zhszpj/web/index/xsDackIndex.htm",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+}).then(f=>f.text()).then(i=>{var k=i.indexOf("jQuery.ajaxSetup({headers:{HHCSRFToken:\"");return(i.slice(k+40,k+76))})};
+async function j(){var k=await SifegetKey();return await h(k)};
+v=new DOMParser();
+hr=async function(a){var j=v.parseFromString(a,"text/html");var k="";[...j.querySelectorAll("input")].map(e=>{k+=e.name+"="+encodeURIComponent(e.value)+"&"});return await fetch(j.querySelector("form").action, {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "cache-control": "max-age=0",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-site",
+    "upgrade-insecure-requests": "1"
+  },
+  "referrer": "https://szpj.sdei.edu.cn/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body":  k.slice(0,-1),
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}).then(e=>e.text());}
+async function loginB(a){await loginA(a);await hr(await hr(await fetch("https://szpj.sdei.edu.cn/zhszpj/ggfwSsoAuth").then(e=>e.text())));return await j()};
+downFile = (blob,name) => {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.download = name;
+    a.href = URL.createObjectURL(blob);
+    document.body.appendChild(a);
+    a.click(); 
+    document.body.removeChild(a);
+  };
+async function dimage(n){return downFile(await fetch("https://szpj.sdei.edu.cn/zhszpj/web/common/fileShow.do?method=getXsImgFile", {
+  "headers": {
+    "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "image",
+    "sec-fetch-mode": "no-cors",
+    "sec-fetch-site": "same-origin"
+  },
+  "referrer": "https://szpj.sdei.edu.cn/zhszpj/web/jbqk/xsXqDack.htm?stuFlag=1&xn=2023&xq=1",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+}).then(p=>p.blob()),n);}
+async function down(n){await downFile(new Blob([JSON.stringify(await loginB(n))]),n+".json");await dimage(n+".png");return 0};
