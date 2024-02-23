@@ -52,8 +52,7 @@ function headersGetCookie(obj,k2="s"){
     }
 }
 //console.log(cookietoString(Cookie["/"]))
-var password="CpFmGEymSQvBHcqkErw8DQ==";
-async function loginA(l){
+async function loginA(l,password){
     return await fetch("https://www.sdei.edu.cn/euc/j_hh_security_check?j_username="+l+"&j_password="+password, {
                         "headers": {
                             "accept": "application/json, text/plain, */*",
@@ -201,8 +200,8 @@ hr=async function(a){
                         return e.text()
                     });
 }
-async function loginB(a){
-    await loginA(a);
+async function loginB(a,password){
+    await loginA(a,password);
     await hr(await hr(await fetch("https://szpj.sdei.edu.cn/zhszpj/ggfwSsoAuth", {
         "headers": {
             "Cookie":`token=${Cookie["/"]["token"]}`,
@@ -265,11 +264,11 @@ const dimage = async (dest) => {
         });
       });
 };
-async function down(n){
+async function down(n,password="CpFmGEymSQvBHcqkErw8DQ=="){
     Cookie={};
     Cookiew={};
     fkey=0;
-    fs.writeFileSync("./datak/"+n+".json",JSON.stringify(await loginB(n)));
+    fs.writeFileSync("./datak/"+n+".json",JSON.stringify(await loginB(n,password)));
     await dimage("./datak/"+n+".png");
     return 0
 };
