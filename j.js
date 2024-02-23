@@ -269,8 +269,8 @@ async function down(n){
     Cookie={};
     Cookiew={};
     fkey=0;
-    fs.writeFileSync("./data/"+n+".json",JSON.stringify(await loginB(n)));
-    await dimage("./data/"+n+".png");
+    fs.writeFileSync("./datak/"+n+".json",JSON.stringify(await loginB(n)));
+    await dimage("./datak/"+n+".png");
     return 0
 };
 module.exports=down;
