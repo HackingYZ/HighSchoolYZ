@@ -2,6 +2,7 @@
   "dependencies": {
     "@xmldom/xmldom": "^0.8.10",
     "cookie": "^0.6.0",
+    "crypto-js": "^4.2.0",
     "jsdom": "^24.0.0",
     "node-fetch": "^2.7.0",
     "query-selector": "^2.0.0"
