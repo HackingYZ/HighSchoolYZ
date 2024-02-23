@@ -268,8 +268,8 @@ async function down(n,password="CpFmGEymSQvBHcqkErw8DQ=="){
     Cookie={};
     Cookiew={};
     fkey=0;
-    fs.writeFileSync("./datah/"+n+".json",JSON.stringify(await loginB(n,password)));
-    await dimage("./datah/"+n+".png");
+    fs.writeFileSync("./datalinshi/"+n+".json",JSON.stringify(await loginB(n,password)));
+    await dimage("./datalinshi/"+n+".png");
     return 0
 };
 module.exports=down;
