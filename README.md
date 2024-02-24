@@ -1,2 +1,2 @@
 # HighSchoolYZ
-一中社工库
+一  中  社  工  库
